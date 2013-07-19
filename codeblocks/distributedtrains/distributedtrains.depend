@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1374274991 source:c:\users\alexandrus\dt\src\programs\simulation.cpp
+	<iostream>
+	"regions.hpp"
+
+1374272396 c:\users\alexandrus\dt\src\core\regions.hpp
+	<list>
+	<iostream>
+
+1374272403 source:c:\users\alexandrus\dt\src\core\regions.cpp
+	"regions.hpp"
+
