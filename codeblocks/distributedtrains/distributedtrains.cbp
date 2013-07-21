@@ -7,16 +7,17 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../distributedtrains" prefix_auto="1" extension_auto="1" />
+				<Option output="../../distributedtrains" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-g" />
+					<Add option="-std=c++11" />
+					<Add directory="../../src/core" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="../distributedtrains" prefix_auto="1" extension_auto="1" />
+				<Option output="../../distributedtrains" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -31,6 +32,9 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="../../src/core/regions.cpp" />
+		<Unit filename="../../src/core/regions.hpp" />
+		<Unit filename="../../src/programs/simulation.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -5,6 +5,6 @@ int main()
 {
     std::cout<<"Hello World"<<std::endl;
     Region region;
-    region.getNodes<Node>(10,10);
-    region.getNodes<Node2>(10,10);
+   // auto node=region.getNode<Node>(10,10);
+    auto node2=region.getNode<Node2>(10,10);
 }
