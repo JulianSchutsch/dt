@@ -13,7 +13,6 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-std=c++11" />
-					<Add directory="../../src/core" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -31,10 +30,14 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="../../src/core" />
+			<Add directory="../../src/xml" />
 		</Compiler>
 		<Unit filename="../../src/core/regions.cpp" />
 		<Unit filename="../../src/core/regions.hpp" />
+		<Unit filename="../../src/core/variant.hpp" />
 		<Unit filename="../../src/programs/simulation.cpp" />
+		<Unit filename="../../src/xml/xmlparser.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

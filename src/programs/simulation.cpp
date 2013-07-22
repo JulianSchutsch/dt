@@ -1,5 +1,6 @@
 #include <iostream>
 #include "regions.hpp"
+#include "xmlparser.hpp"
 
 int main()
 {
