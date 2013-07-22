@@ -7,6 +7,12 @@
 int main()
 {
     Tests::TestFramework testFramework;
-    Tests::Test_Variant test_variant(testFramework);
-    test_variant.run();
+    {
+        Tests::Test_Variant test_variant(testFramework);
+        test_variant.run();
+    }
+    {
+        Tests::Test_XML test_xml(testFramework);
+        test_xml.run();
+    }
 }

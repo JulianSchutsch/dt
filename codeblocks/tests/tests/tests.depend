@@ -8,7 +8,7 @@
 	<array>
 	<iostream>
 
-1374481377 source:c:\users\alexandrus\dt\tests\tests.cpp
+1374514739 source:c:\users\alexandrus\dt\tests\tests.cpp
 	"variant.hpp"
 	"testframework.hpp"
 	"test_variant.hpp"
@@ -46,11 +46,11 @@
 	<list>
 	"variant.hpp"
 
-1374481353 source:c:\users\alexandrus\dt\src\xml\xml.cpp
+1374521918 source:c:\users\alexandrus\dt\src\xml\xml.cpp
 	"xml.hpp"
 	<sstream>
 
-1374487659 c:\users\alexandrus\dt\src\xml\xml.hpp
+1374523633 c:\users\alexandrus\dt\src\xml\xml.hpp
 	<string>
 	<map>
 	<memory>
@@ -60,7 +60,7 @@
 1374487195 c:\users\alexandrus\dt\tests\xml\test_xml.hpp
 	"testframework.hpp"
 
-1374487795 source:c:\users\alexandrus\dt\tests\xml\test_xml.cpp
+1374521914 source:c:\users\alexandrus\dt\tests\xml\test_xml.cpp
 	"test_xml.hpp"
 	<memory>
 	"xml.hpp"

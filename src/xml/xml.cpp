@@ -5,12 +5,47 @@
 namespace XML
 {
 
+    bool XMLNode::equals(XMLNode_SPtr other)
+    {
+        if(id!=other->id || text!=other->text || children.size()!=other->children.size()) return false;
+
+        std::list<XMLNode_SPtr>::const_iterator a=children.cbegin();
+        std::list<XMLNode_SPtr>::const_iterator b=children.cbegin();
+
+        while(a!=children.cend())
+        {
+            if(!(*a)->equals(*b)) return false;
+            a++;
+            b++;
+        }
+
+        return true;
+    }
+
+    void XMLNode::print(std::string indent)
+    {
+        if(text=="" && children.empty())
+        {
+            std::cout<<indent<<"<"<<id<<"/>"<<std::endl;
+        }
+        else
+        {
+            std::cout<<indent<<"<"<<id<<">"<<std::endl;
+            if(text!="") std::cout<<indent<<text<<":"<<std::endl;
+            for(XMLNode_SPtr& child : children)
+            {
+                child->print(indent+" ");
+            }
+            std::cout<<indent<<"</"<<id<<">"<<std::endl;
+        }
+    }
+
+
     static std::string parseXMLIdentifier(std::streambuf& buffer)
     {
         std::stringstream identifier;
         {
             char c=buffer.sgetc();
-            std::cout<<"c:"<<c<<std::endl;
             if((c<'A' || c>'Z') && (c<'a' || c>'z'))
             {
                 throw XMLParseException();
@@ -18,14 +53,11 @@ namespace XML
             buffer.snextc();
             identifier<<c;
         }
-        std::cout<<"IDLOOP"<<std::endl;
         for(;;)
         {
             char c=buffer.sgetc();
-            std::cout<<"c_:"<<c<<":"<<std::endl;
             if((c<'0' || c>'9') && (c<'A' || c>'Z') && (c<'a' || c>'z'))
             {
-                std::cout<<"Break"<<std::endl;
                 break;
             }
             buffer.snextc();
@@ -49,7 +81,7 @@ namespace XML
         parseXMLSkipSpace(buffer);
         std::string id=parseXMLIdentifier(buffer);
         std::cout<<"Parse Id:"<<id<<std::endl;
-        std::list<std::shared_ptr<XMLNode>> children;
+        std::list<XMLNode_SPtr> children;
         std::string text;
 
         parseXMLSkipSpace(buffer);
@@ -57,7 +89,6 @@ namespace XML
         for(;;)
         {
             char c=buffer.sgetc();
-            std::cout<<"Node:"<<c<<std::endl;
             char c2=buffer.snextc();
             if((c=='/') && (c2=='>'))
             {
@@ -79,8 +110,11 @@ namespace XML
             {
                 char c=buffer.sgetc();
                 char c2=buffer.snextc();
-                std::cout<<"Textc:"<<c<<std::endl;
-                if(c=='<')
+                if(c!='<')
+                {
+                    textbuffer<<c;
+                }
+                else
                 {
                     if(c2=='/')
                     {
@@ -90,7 +124,6 @@ namespace XML
                     // TODO: There may be other cases.
                     children.push_back(parseXMLNode(buffer));
                 }
-                textbuffer<<c;
             }
             text=textbuffer.str();
         }
@@ -118,13 +151,13 @@ namespace XML
             buffer.snextc();
         }
     completeNode:
-        std::cout<<"Complete";
+        std::cout<<"Complete"<<std::endl;
         // Complete...just build and return it.
-        std::shared_ptr<XMLNode> node(new XMLNode(id, children, text));
+        XMLNode_SPtr node(new XMLNode(id, children, text));
         return node;
     }
 
-    std::shared_ptr<XMLNode> parseXML(std::streambuf& buffer)
+    XMLNode_SPtr parseXML(std::streambuf& buffer)
     {
         std::cout<<"Parse Start"<<std::endl;
         parseXMLSkipSpace(buffer);
@@ -133,11 +166,11 @@ namespace XML
         {
             buffer.snextc();
             std::cout<<"Parse Node"<<std::endl;
-            std::shared_ptr<XMLNode> current=parseXMLNode(buffer);
+            XMLNode_SPtr current=parseXMLNode(buffer);
             std::cout<<"Something"<<std::endl;
             return current;
         }
         std::cout<<"Nothing"<<std::endl;
-        return std::shared_ptr<XMLNode>();
+        return XMLNode_SPtr();
     }
 }
