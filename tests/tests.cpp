@@ -3,6 +3,9 @@
 #include "testframework.hpp"
 #include "test_variant.hpp"
 #include "test_xml.hpp"
+#include "test_refcount.hpp"
+
+#include "gui.hpp"
 
 int main()
 {
@@ -14,5 +17,10 @@ int main()
     {
         Tests::Test_XML test_xml(testFramework);
         test_xml.run();
+    }
+    {
+        Tests::Test_RefCount test_refcount(testFramework);
+        test_refcount.run();
+
     }
 }

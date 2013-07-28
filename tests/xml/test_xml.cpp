@@ -10,38 +10,46 @@ namespace Tests
         using XML::XMLNode;
         using XML::XMLNode_SPtr;
         XMLNode_SPtr root(new XMLNode("ROOT"));
-        root->addChild(XMLNode_SPtr(new XMLNode("CHILD1")));
-        root->addChild(XMLNode_SPtr(new XMLNode("CHILD2")));
+        root->children.push_back(XMLNode_SPtr(new XMLNode("CHILD1")));
+        root->children.push_back(XMLNode_SPtr(new XMLNode("CHILD2")));
         return root;
     }
 
     void Test_XML::test_Construction()
     {
+        AddSection("XML Construction");
+
         using XML::XMLNode;
         using XML::XMLNode_SPtr;
-        using XML::parseXML;
-        AddSection("XML Construction");
+
         XMLNode_SPtr root=createXMLTree1();
-        if(root->id!="ROOT") AddError("Root node id property invalid");
-        if(root->text!="") AddError("Root node text property invalid");
+        ASSERTERROR(root->id=="ROOT","Root node id property invalid");
+        ASSERTERROR(root->text=="","Root node text property invalid");
 
         {
             std::list<XMLNode_SPtr>::const_iterator i=root->children.cbegin();
-            if(i==root->children.cend()) AddError("Expected Child node CHILD1, got null");
-            if((*i)->id!="CHILD1") AddError("Expected Child node CHILD1");
+            ASSERTERROR(i!=root->children.cend(),"Expected child node CHILD1, got null");
+            ASSERTERROR((*i)->id=="CHILD1","Expected child node CHILD1");
             i++;
-            if(i==root->children.cend()) AddError("Expected Child node CHILD2, got null");
-            if((*i)->id!="CHILD2") AddError("Expected Child node CHILD2");
+            ASSERTERROR(i!=root->children.cend(),"Expected child node CHILD2, got null");
+            ASSERTERROR((*i)->id=="CHILD2","Expected child node CHILD2");
             i++;
-            if(i!=root->children.cend()) AddError("Expected no more children");
+            ASSERTERROR(i==root->children.cend(),"Expected no more children");
         }
+    }
+
+    void Test_XML::test_Parser()
+    {
+        AddSection("XML Parser");
+
+        using XML::XMLNode_SPtr;
+        using XML::parseXML;
+
+        XMLNode_SPtr root=createXMLTree1();
         {
             std::stringbuf b("<ROOT><CHILD1></CHILD1><CHILD2></CHILD2></ROOT>");
             XMLNode_SPtr root2 = parseXML(b);
-            if(!root->equals(root2))
-            {
-                AddError("Parsed Tree (1) should be identical");
-            }
+            ASSERTERROR(root->equals(root2),"Parser Tree (1) should be identical");
         }
     }
 

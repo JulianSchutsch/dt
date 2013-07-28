@@ -10,6 +10,7 @@ namespace Tests
     private:
 
         void test_Construction();
+        void test_Parser();
 
     public:
         Test_XML(TestFramework& testFramework):Test(testFramework){};

@@ -75,7 +75,7 @@ namespace XML
         }
     }
 
-    static std::shared_ptr<XMLNode> parseXMLNode(std::streambuf& buffer)
+    static XMLNode_SPtr parseXMLNode(std::streambuf& buffer)
     {
         // 1. Read Symbol name
         parseXMLSkipSpace(buffer);

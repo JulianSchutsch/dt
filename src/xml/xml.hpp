@@ -5,24 +5,27 @@
 #include <map>
 #include <memory>
 #include <list>
+#include <exception>
 
 #include "variant.hpp"
+#include "refcount.hpp"
 
 namespace XML
 {
-    class XMLParseException
+    class XMLParseException:public std::exception
     {
-        virtual const char* what()
+        virtual const char* what() const noexcept override
         {
             return "XMLParseException";
         }
     };
 
     class XMLNode;
-    typedef std::shared_ptr<XMLNode> XMLNode_SPtr;
+    typedef Core::Ref<XMLNode> XMLNode_SPtr;
 
     class XMLNode
     {
+        REFCOUNTABLE
     public:
         std::list<XMLNode_SPtr> children;
         std::string id;
@@ -43,12 +46,11 @@ namespace XML
                 attributes(){}
         bool equals(XMLNode_SPtr other);
         void print(std::string indent="");
-        void addChild(XMLNode_SPtr node){children.push_back(node);}
 
     };
 
     XMLNode_SPtr parseXML(std::streambuf& buffer);
 
-} // namespace mXML
+} // namespace XML
 
 #endif // _XML_HEADER_

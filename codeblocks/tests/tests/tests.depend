@@ -2,19 +2,21 @@
 1374310950 source:c:\users\alexandrus\dt\src\core\regions.cpp
 	"regions.hpp"
 
-1374314961 c:\users\alexandrus\dt\src\core\regions.hpp
+1374941627 c:\users\alexandrus\dt\src\core\regions.hpp
 	<list>
 	<map>
 	<array>
 	<iostream>
 
-1374514739 source:c:\users\alexandrus\dt\tests\tests.cpp
+1374945596 source:c:\users\alexandrus\dt\tests\tests.cpp
 	"variant.hpp"
 	"testframework.hpp"
 	"test_variant.hpp"
 	"test_xml.hpp"
+	"test_refcount.hpp"
+	"gui.hpp"
 
-1374428456 c:\users\alexandrus\dt\src\core\variant.hpp
+1374531652 c:\users\alexandrus\dt\src\core\variant.hpp
 	<string>
 	<sstream>
 	<iostream>
@@ -26,10 +28,10 @@
 
 1374418104 c:\users\alexandrus\dt\tests\core\variant.hpp
 
-1374481825 c:\users\alexandrus\dt\tests\framework\testframework.hpp
+1375009781 c:\users\alexandrus\dt\tests\framework\testframework.hpp
 	<iostream>
 
-1374428629 source:c:\users\alexandrus\dt\tests\core\test_variant.cpp
+1375006436 source:c:\users\alexandrus\dt\tests\core\test_variant.cpp
 	"test_variant.hpp"
 
 1374425191 source:c:\users\alexandrus\dt\src\core\variant.cpp
@@ -46,22 +48,44 @@
 	<list>
 	"variant.hpp"
 
-1374521918 source:c:\users\alexandrus\dt\src\xml\xml.cpp
+1374942129 source:c:\users\alexandrus\dt\src\xml\xml.cpp
 	"xml.hpp"
 	<sstream>
 
-1374523633 c:\users\alexandrus\dt\src\xml\xml.hpp
+1374966002 c:\users\alexandrus\dt\src\xml\xml.hpp
 	<string>
 	<map>
 	<memory>
 	<list>
+	<exception>
 	"variant.hpp"
+	"refcount.hpp"
 
-1374487195 c:\users\alexandrus\dt\tests\xml\test_xml.hpp
+1374590211 c:\users\alexandrus\dt\tests\xml\test_xml.hpp
 	"testframework.hpp"
 
-1374521914 source:c:\users\alexandrus\dt\tests\xml\test_xml.cpp
+1375006650 source:c:\users\alexandrus\dt\tests\xml\test_xml.cpp
 	"test_xml.hpp"
 	<memory>
 	"xml.hpp"
+
+1374600644 c:\users\alexandrus\dt\src\gui\gui.hpp
+	<list>
+	<memory>
+	"guibounds.hpp"
+
+1374600713 c:\users\alexandrus\dt\src\gui\guibounds.hpp
+
+1374942486 c:\users\alexandrus\dt\src\core\basics.hpp
+
+1374946804 c:\users\alexandrus\dt\tests\core\test_refcount.hpp
+	<string>
+	"testframework.hpp"
+	"refcount.hpp"
+
+1375009534 c:\users\alexandrus\dt\src\core\refcount.hpp
+	<exception>
+
+1375009550 source:c:\users\alexandrus\dt\tests\core\test_refcount.cpp
+	"test_refcount.hpp"
 

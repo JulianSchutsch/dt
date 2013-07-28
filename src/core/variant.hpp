@@ -88,6 +88,26 @@ namespace Core
             return m_variantType==variantType_t::String?m_string==a_string:false;
         }
 
+        bool operator == (const Variant& other) const
+        {
+            if(!(m_variantType==other.m_variantType)) return false;
+            switch(m_variantType)
+            {
+            case variantType_t::None:
+                return true;
+            case variantType_t::Int:
+                return m_variantUnion.u_int==other.m_variantUnion.u_int;
+            case variantType_t::Float:
+                return m_variantUnion.u_float==other.m_variantUnion.u_float;
+            case variantType_t::Double:
+                return m_variantUnion.u_double==other.m_variantUnion.u_double;
+            case variantType_t::String:
+                return m_string==other.m_string;
+            }
+            // TODO: Throw exception for incomplete implementation
+            return false;
+        }
+
         std::string toString() const;
 
     };

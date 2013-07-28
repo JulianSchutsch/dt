@@ -5,6 +5,15 @@
 
 namespace Tests
 {
+    #define ASSERTERROR(cond,str)                \
+        do                                       \
+        {                                        \
+            if(!(cond))                          \
+            {                                    \
+                AddError(str,__FILE__,__LINE__); \
+            }                                    \
+        } while(0);                              \
+
     class TestFramework
     {
     private:
@@ -34,6 +43,18 @@ namespace Tests
             std::cout<<"[Warning]:"<<a_test<<" -> "<<a_warning<<std::endl;
         }
 
+        void Summary()
+        {
+            if(m_errorCount!=0)
+            {
+                std::cout<<" Number of Errors   : "<<m_errorCount<<std::endl;
+            }
+            if(m_warningCount!=0)
+            {
+                std::cout<<" Number of Warnings : "<<m_warningCount<<std::endl;
+            }
+        }
+
         TestFramework(){};
         TestFramework(const TestFramework& source) = delete;
         TestFramework(const TestFramework&& source) = delete;
@@ -53,15 +74,15 @@ namespace Tests
         {
             m_testFramework.AddSection(testName(), a_section);
         }
-        void AddMessage(std::string a_message)
+        void AddMessage(std::string a_message, std::string a_filename, unsigned long a_linenumber)
         {
             m_testFramework.AddMessage(testName(), a_message);
         }
-        void AddError(std::string a_error)
+        void AddError(std::string a_error, std::string a_filename, unsigned long a_linenumber)
         {
             m_testFramework.AddError(testName(), a_error);
         }
-        void AddWarning(std::string a_warning)
+        void AddWarning(std::string a_warning, std::string a_filename, unsigned long a_linenumber)
         {
             m_testFramework.AddWarning(testName(), a_warning);
         }

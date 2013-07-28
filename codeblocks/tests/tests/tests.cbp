@@ -37,13 +37,19 @@
 			<Add directory="../../../tests/framework" />
 			<Add directory="../../../src/xml" />
 			<Add directory="../../../tests/xml" />
+			<Add directory="../../../src/gui" />
 		</Compiler>
+		<Unit filename="../../../src/core/refcount.hpp" />
 		<Unit filename="../../../src/core/regions.cpp" />
 		<Unit filename="../../../src/core/regions.hpp" />
 		<Unit filename="../../../src/core/variant.cpp" />
 		<Unit filename="../../../src/core/variant.hpp" />
+		<Unit filename="../../../src/gui/gui.hpp" />
+		<Unit filename="../../../src/gui/guibounds.hpp" />
 		<Unit filename="../../../src/xml/xml.cpp" />
 		<Unit filename="../../../src/xml/xml.hpp" />
+		<Unit filename="../../../tests/core/test_refcount.cpp" />
+		<Unit filename="../../../tests/core/test_refcount.hpp" />
 		<Unit filename="../../../tests/core/test_variant.cpp" />
 		<Unit filename="../../../tests/core/test_variant.hpp" />
 		<Unit filename="../../../tests/framework/testframework.hpp" />
